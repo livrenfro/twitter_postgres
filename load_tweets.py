@@ -158,7 +158,7 @@ def insert_tweet(connection,tweet):
         res = connection.execute(sql, {
             'id_users': tweet['user']['id'],
             'created_at': tweet['user']['created_at'],
-            'updated_at': tweet['user']['updated_at'],
+            'updated_at': tweet['created_at'],
             'id_urls': user_id_urls,
             'friends_count': tweet['user']['friends_count'],
             'listed_count': tweet['user']['listed_count'],
@@ -318,7 +318,7 @@ def insert_tweet(connection,tweet):
             id_urls = get_id_urls(url['expanded_url'], connection)
 
             sql=sqlalchemy.sql.text('''
-            INSERT INTO tweets_url
+            INSERT INTO tweet_urls
                 (id_tweets, 
                 id_urls)
                 VALUES
